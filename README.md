@@ -32,6 +32,9 @@ python twitter-api-semantic-search/semantic_search.py --query "How do I fetch tw
 Example Query:
 python twitter-api-semantic-search/semantic_search.py --query "How do I filter tweets by date?"
 
+**Results:**
+The script successfully returns the most relevant endpoints (e.g., `Multiple Tweets` or `Recent search`) based on semantic similarity of the query mapped to the Postman descriptions.
+
 **Task 2: News Narrative Builder***
 Objective:
 This task processes a large JSON news dataset, filters the relevant articles based on a user-provided topic, and generates a narrative. The narrative includes:
@@ -75,6 +78,9 @@ narrative_summary: A short summary of the main storyline.
 timeline: A chronological ordering of relevant articles.
 clusters: Groups of semantically similar articles.
 graph: A graph showing relationships between articles.
+
+**Results:**
+The script successfully loads the dataset, computes embeddings, and exports a cohesive JSON output containing the storyline summary, a chronological timeline, 5 narrative article clusters, and a mapping graph that plots the interconnections between news events.
 
 **news_dataset.json: JSON file containing the news articles dataset.**
 

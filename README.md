@@ -1,86 +1,215 @@
-# ML Tasks - Semantic Search and Narrative Builder
+ML Tasks: Semantic Search & News Narrative Builder
 
-This repository contains solutions for two core machine learning tasks:
+Overview
 
-1. **Semantic Search on Twitter API Documentation**  
-2. **News Narrative Builder**
+This repository contains implementations of two machine learning systems:
 
-Both tasks are implemented in separate Python files but reside within the same repository.
+1. Semantic Search Engine over Twitter API documentation
+2. News Narrative Builder for generating structured storylines from news datasets
 
-**Task 1: Semantic Search on Twitter API Documentation**
+Both tasks leverage modern NLP techniques such as Sentence-BERT embeddings, semantic similarity, and clustering.
 
-Objective:
-Build a **semantic search engine** over the **Twitter API Postman documentation**. The system performs semantic search on the documentation and returns the most relevant chunks for a given query.
+---
 
-Features:
-- **Semantic Search**: Query the Twitter API documentation with a natural language query.
-- **FAISS Indexing**: Index documentation chunks using FAISS for fast retrieval.
-- **Sentence-BERT Embedding**: Use pre-trained embeddings for efficient semantic search.
+Project Structure
 
-Setup Instructions:
+├── twitter-api-semantic-search/
+│   ├── semantic_search.py
+│   ├── requirements.txt
+│   └── data/
+│
+├── news-narrative-builder/
+│   ├── narrative_builder.py
+│   ├── requirements.txt
+│   └── news_dataset.json
+│
+└── README.md
 
- 1. Clone the Repository:
+---
+
+Installation
+
+Clone the repository:
+
 git clone https://github.com/Sonali-b23/twitter-api-semantic-search.git
+cd twitter-api-semantic-search
 
-3. Install Dependencies:
-pip install -r twitter-api-semantic-search/requirements.txt
+Install dependencies:
 
-3. Run the Semantic Search Script:
-You can query the documentation using the following command:
-python twitter-api-semantic-search/semantic_search.py --query "How do I fetch tweets with expansions?
+pip install -r requirements.txt
 
-Example Query:
-python twitter-api-semantic-search/semantic_search.py --query "How do I filter tweets by date?"
+---
 
-**Results:**
-The script successfully returns the most relevant endpoints (e.g., `Multiple Tweets` or `Recent search`) based on semantic similarity of the query mapped to the Postman descriptions.
+Task 1: Semantic Search on Twitter API Documentation
 
-**Task 2: News Narrative Builder***
-Objective:
-This task processes a large JSON news dataset, filters the relevant articles based on a user-provided topic, and generates a narrative. The narrative includes:
+Objective
 
-A summary of the topic.
-A timeline of events.
-Clusters of semantically related articles.
-A narrative graph representing relationships between articles.
+Build a semantic search system that retrieves the most relevant Twitter API endpoints based on a natural language query.
 
-Features:
-**Narrative Summary**: A 5–10 sentence synthesis of the main storyline around a topic.
-**Timeline of Events**: A chronological list of relevant articles related to the topic.
-**Clustering:** Articles are grouped into semantic clusters.
-**Narrative Graph**: Visualizes the relationships between articles (e.g., "builds on", "contradicts").
+Approach
 
-**Setup Instructions:**
-1. Clone the Repository:
-git clone https://github.com/Sonali-b23/twitter-api-semantic-search.git
+1. Data Preparation
+   
+   - Extract documentation text from Postman collection
+   - Split into meaningful chunks
 
-2. Install Dependencies:
-pip install -r news-narrative-builder/requirements.txt
+2. Embedding Generation
+   
+   - Use Sentence-BERT to convert text into dense vectors
 
-3. Run the Narrative Builder Script:
-To generate a narrative for a topic, use the following command:
+3. Indexing
+   
+   - Store embeddings using FAISS for fast similarity search
+
+4. Query Processing
+   
+   - Convert user query into embedding
+   - Retrieve top-k similar chunks using cosine similarity
+
+---
+
+Features
+
+- Natural language query support
+- High-speed retrieval using FAISS
+- Context-aware results using transformer embeddings
+
+---
+
+Usage
+
+Run the semantic search:
+
+python semantic_search.py --query "How do I fetch tweets with expansions?"
+
+Example:
+
+python semantic_search.py --query "How do I filter tweets by date?"
+
+---
+
+Sample Output
+
+Top Results:
+1. Recent Search Endpoint - Retrieves tweets filtered by time range
+2. Multiple Tweets Endpoint - Supports expansions and fields
+
+---
+
+Results
+
+The system successfully retrieves the most relevant API endpoints by mapping query intent to documentation semantics using vector similarity.
+
+---
+
+Task 2: News Narrative Builder
+
+Objective
+
+Generate a structured narrative from a large news dataset based on a given topic.
+
+---
+
+Pipeline
+
+1. Filtering
+   
+   - Select articles relevant to the input topic using semantic similarity
+
+2. Embedding
+   
+   - Convert articles into vector representations
+
+3. Clustering
+   
+   - Group similar articles using clustering (e.g., K-Means / hierarchical clustering)
+
+4. Timeline Construction
+   
+   - Sort articles chronologically
+
+5. Narrative Generation
+   
+   - Generate a 5–10 sentence summary of the overall storyline
+
+6. Graph Construction
+   
+   - Build relationships between articles:
+     - "builds on"
+     - "contradicts"
+     - "related to"
+
+---
+
+Features
+
+- Narrative summary generation
+- Chronological timeline
+- Semantic clustering of articles
+- Graph-based relationship mapping
+
+---
+
+Usage
+
+Run the narrative builder:
+
 python news-narrative-builder/narrative_builder.py --topic "Jubilee Hills elections"
 
-**This will generate:**
-A narrative summary
-A timeline of events.
-Clusters of related articles.
-A narrative graph of article relationships.
-
-**Example Command:**
+Example:
 
 python news-narrative-builder/narrative_builder.py --topic "Israel-Iran conflict"
 
+---
 
-**Output Structure:**
-The output will be a JSON file containing:
-narrative_summary: A short summary of the main storyline.
-timeline: A chronological ordering of relevant articles.
-clusters: Groups of semantically similar articles.
-graph: A graph showing relationships between articles.
+Output Format
 
-**Results:**
-The script successfully loads the dataset, computes embeddings, and exports a cohesive JSON output containing the storyline summary, a chronological timeline, 5 narrative article clusters, and a mapping graph that plots the interconnections between news events.
+The system generates a JSON file with the following structure:
 
-**news_dataset.json: JSON file containing the news articles dataset.**
+{
+  "narrative_summary": "...",
+  "timeline": [...],
+  "clusters": [...],
+  "graph": {...}
+}
 
+---
+
+Results
+
+The model successfully produces:
+
+- A coherent narrative summary
+- A chronological timeline of events
+- 5 semantic clusters of related articles
+- A graph representing inter-article relationships
+
+---
+
+Future Improvements
+
+- Add evaluation metrics (precision@k for search)
+- Improve clustering using advanced methods (HDBSCAN)
+- Visualize narrative graph using interactive tools
+- Deploy as a web application
+
+---
+
+Tech Stack
+
+- Python
+- Sentence-BERT
+- FAISS
+- NumPy / Pandas
+- Scikit-learn
+
+---
+
+Conclusion
+
+This project demonstrates practical applications of NLP in:
+
+- Information retrieval (semantic search)
+- Story understanding (narrative generation)
+
+It highlights how embeddings and similarity learning can be used to build intelligent, real-world systems.

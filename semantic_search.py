@@ -102,6 +102,7 @@ def main():
     parser.add_argument("--query", required=True, help="Query string for semantic search")
     parser.add_argument("--repo", default="postman-twitter-api", help="Path to repo")
     parser.add_argument("--top_k", type=int, default=5)
+    parser.add_argument("--output", type=str, default=None, help="If set, write the JSON result to this file instead of only printing it")
     args = parser.parse_args()
 
     print("Loading documentation...")
@@ -124,7 +125,13 @@ def main():
     print("\nSearching...\n")
     results = query_docs(args.query, model, index, chunks, top_k=args.top_k)
 
-    print(json.dumps({"query": args.query, "results": results}, indent=4))
+    output = {"query": args.query, "results": results}
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(output, f, indent=4, ensure_ascii=False)
+        print(f"Saved result to {args.output}")
+    else:
+        print(json.dumps(output, indent=4))
 
 if __name__ == "__main__":
     main()

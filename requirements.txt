@@ -1,0 +1,12 @@
+# Core NLP / embeddings
+sentence-transformers>=2.6
+transformers>=4.38
+torch>=2.1
+
+# Semantic search index
+faiss-cpu
+
+# Narrative builder
+scikit-learn
+networkx
+numpy

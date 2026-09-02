@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# The full news dataset is too large to commit (originally 81MB / 36k
+# articles). A 300-article sample (news_dataset_sample.json) ships with the
+# repo instead and is NOT ignored -- see README for how to point
+# narrative_builder.py at your own full dataset.
+news_dataset.json
+
+# Script output files (if using --output)
+*_results.json
+outputs/
+
+# OS
+.DS_Store

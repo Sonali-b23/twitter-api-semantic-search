@@ -1,0 +1,180 @@
+{
+  "info": {
+    "name": "Twitter API v2 (sample collection)",
+    "description": "A small, self-authored sample of Twitter/X API v2 endpoints used to demo semantic_search.py out of the box. Replace or extend this folder with a fuller exported Postman collection for real use.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Tweet lookup",
+      "item": [
+        {
+          "name": "Get Tweets by ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/tweets", "host": ["api", "twitter", "com"], "path": ["2", "tweets"] },
+            "description": "Retrieve one or more Tweets by numeric ID, with optional expansions and fields for author, attached media, and public metrics."
+          }
+        },
+        {
+          "name": "Get a single Tweet",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/tweets/:id", "host": ["api", "twitter", "com"], "path": ["2", "tweets", ":id"] },
+            "description": "Retrieve a single Tweet by its ID, returning its text, author ID, and creation timestamp along with any requested expansions."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search Tweets",
+      "item": [
+        {
+          "name": "Recent search",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/tweets/search/recent", "host": ["api", "twitter", "com"], "path": ["2", "tweets", "search", "recent"] },
+            "description": "Search public Tweets posted in the last 7 days that match a query. Supports filtering by time range, language, and result count, and returns tweets filtered by date range."
+          }
+        },
+        {
+          "name": "Full-archive search",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/tweets/search/all", "host": ["api", "twitter", "com"], "path": ["2", "tweets", "search", "all"] },
+            "description": "Search the complete public archive of Tweets (requires elevated access) matching a query, with rich boolean and field-based filtering operators."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Filtered stream",
+      "item": [
+        {
+          "name": "Connect to the stream",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/tweets/search/stream", "host": ["api", "twitter", "com"], "path": ["2", "tweets", "search", "stream"] },
+            "description": "Open a persistent connection that streams Tweets in real time as they match the currently active set of filter rules."
+          }
+        },
+        {
+          "name": "Add or delete rules",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "https://api.twitter.com/2/tweets/search/stream/rules", "host": ["api", "twitter", "com"], "path": ["2", "tweets", "search", "stream", "rules"] },
+            "description": "Add new matching rules to the filtered stream, or delete existing ones by rule ID, to control which Tweets are delivered."
+          }
+        },
+        {
+          "name": "Get active rules",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/tweets/search/stream/rules", "host": ["api", "twitter", "com"], "path": ["2", "tweets", "search", "stream", "rules"] },
+            "description": "List all filter rules currently applied to the filtered stream for the authenticated app."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get user by username",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/users/by/username/:username", "host": ["api", "twitter", "com"], "path": ["2", "users", "by", "username", ":username"] },
+            "description": "Look up a single user's public profile fields using their @username instead of their numeric ID."
+          }
+        },
+        {
+          "name": "Get users by IDs",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/users", "host": ["api", "twitter", "com"], "path": ["2", "users"] },
+            "description": "Look up multiple users' public profile fields in a single request by passing a comma-separated list of numeric user IDs."
+          }
+        },
+        {
+          "name": "Get a user's Tweets",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/users/:id/tweets", "host": ["api", "twitter", "com"], "path": ["2", "users", ":id", "tweets"] },
+            "description": "Retrieve the most recent Tweets composed by a single user, in reverse-chronological order, with pagination support."
+          }
+        },
+        {
+          "name": "Get followers",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/users/:id/followers", "host": ["api", "twitter", "com"], "path": ["2", "users", ":id", "followers"] },
+            "description": "Retrieve a paginated list of users who follow the specified user account."
+          }
+        },
+        {
+          "name": "Get following",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/users/:id/following", "host": ["api", "twitter", "com"], "path": ["2", "users", ":id", "following"] },
+            "description": "Retrieve a paginated list of accounts that the specified user follows."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Spaces",
+      "item": [
+        {
+          "name": "Look up a Space by ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/spaces/:id", "host": ["api", "twitter", "com"], "path": ["2", "spaces", ":id"] },
+            "description": "Retrieve details about a live or scheduled audio Space, including its title, state, and host information."
+          }
+        },
+        {
+          "name": "Search Spaces",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/spaces/search", "host": ["api", "twitter", "com"], "path": ["2", "spaces", "search"] },
+            "description": "Search for live or scheduled Spaces matching a keyword query in their title."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lists",
+      "item": [
+        {
+          "name": "Get List details",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/lists/:id", "host": ["api", "twitter", "com"], "path": ["2", "lists", ":id"] },
+            "description": "Retrieve metadata about a user-created List, including its name, description, and member/follower counts."
+          }
+        },
+        {
+          "name": "Get List members",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://api.twitter.com/2/lists/:id/members", "host": ["api", "twitter", "com"], "path": ["2", "lists", ":id", "members"] },
+            "description": "Retrieve a paginated list of the accounts that belong to a given List."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Compliance",
+      "item": [
+        {
+          "name": "Create a compliance job",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "https://api.twitter.com/2/compliance/jobs", "host": ["api", "twitter", "com"], "path": ["2", "compliance", "jobs"] },
+            "description": "Create a batch compliance job (Tweets or user IDs) to check the current deletion, suspension, or protection status of previously collected data."
+          }
+        }
+      ]
+    }
+  ]
+}
